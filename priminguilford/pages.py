@@ -1,8 +1,10 @@
 import random
 from os import listdir
 from os.path import isfile, join
-from ._builtin import Page
+from otree.api import Currency as c, currency_range
+from ._builtin import Page, WaitPage
 from .models import Constants
+from PIL import Image
 
 
 class InformedConsent(Page):
@@ -49,12 +51,11 @@ class PrimingBucket(Page):
     def vars_for_template(self):
         pic_path = ""
         if Constants.cond_list[self.round_number-1] == "close":
-            pictures = [f for f in listdir("close semdis priming bucket") if isfile(join("close semdis priming bucket",
-                                                                                         f))]
-            pic_path = pictures[random.randrange(0, len(pictures))]
+            pictures = [f for f in listdir("close semdis priming bucket") if isfile(join("close semdis priming bucket", f))]
+            pic_path = pictures[random.randrange(0,len(pictures))]
         elif Constants.cond_list[self.round_number-1] == "far":
             pictures = [f for f in listdir("far semdis priming bucket") if isfile(join("far semdis priming bucket", f))]
-            pic_path = pictures[random.randrange(0, len(pictures))]
+            pic_path = pictures[random.randrange(0,len(pictures))]
 
         return dict(image_path=pic_path.format(self.round_number + 1))
 
@@ -90,13 +91,11 @@ class PrimingShoelace(Page):
     def vars_for_template(self):
         pic_path = ""
         if Constants.cond_list[self.round_number-1] == "close":
-            pictures = [f for f in listdir("close semdis priming shoelace") if
-                        isfile(join("close semdis priming shoelace", f))]
+            pictures = [f for f in listdir("close semdis priming shoelace") if isfile(join("close semdis priming shoelace", f))]
             pic_path = pictures[random.randrange(0, len(pictures))]
         elif Constants.cond_list[self.round_number-1] == "far":
-            pictures = [f for f in listdir("fer semdis priming shoelace") if
-                        isfile(join("fer semdis priming shoelace", f))]
-            pic_path = pictures[random.randrange(0, len(pictures))]
+            pictures= [f for f in listdir("fer semdis priming shoelace") if isfile(join("fer semdis priming shoelace", f))]
+            pic_path =pictures[random.randrange(0,len(pictures))]
         condition = dict(image_path=pic_path.format(self.round_number + 1))
         return condition
 
@@ -134,8 +133,8 @@ class PrimingWineCork(Page):
             pictures = [f for f in listdir("close winecork") if isfile(join("close winecork", f))]
             pic_path = pictures[random.randrange(0, len(pictures))]
         elif Constants.cond_list[self.round_number-1] == "far":
-            pictures = [f for f in listdir("far winecork") if isfile(join("far winecork", f))]
-            pic_path = pictures[random.randrange(0, len(pictures))]
+            pictures= [f for f in listdir("far winecork") if isfile(join("far winecork", f))]
+            pic_path =pictures[random.randrange(0,len(pictures))]
         condition = dict(image_path=pic_path.format(self.round_number + 1))
         return condition
 
@@ -214,7 +213,7 @@ class PrimingBrick(Page):
             pic_path = pictures[random.randrange(0, len(pictures))]
         elif Constants.cond_list[self.round_number-1] == "far":
             pictures = [f for f in listdir("far semdis priming") if isfile(join("far semdis priming", f))]
-            pic_path = pictures[random.randrange(0, len(pictures))]
+            pic_path = pictures[random.randrange(0,len(pictures))]
         condition = dict(image_path=pic_path.format(self.round_number + 1))
         return condition
 
@@ -253,7 +252,7 @@ class PrimingHanger(Page):
             pic_path = pictures[random.randrange(0, len(pictures))]
         elif Constants.cond_list[self.round_number-1] == "far":
             pictures = [f for f in listdir("far hanger") if isfile(join("far hanger", f))]
-            pic_path = pictures[random.randrange(0, len(pictures))]
+            pic_path = pictures[random.randrange(0,len(pictures))]
         condition = dict(image_path=pic_path.format(self.round_number + 1))
         return condition
 
@@ -272,6 +271,7 @@ class Hanger(Page):
             return self.round_number == self.participant.vars['task_rounds']["hanger"]
         else:
             return False
+
 
 
 class AttentionCheck(Page):
@@ -301,3 +301,5 @@ class Demographics(Page):
 page_sequence = [InformedConsent, Instructions, TrainingSheetProtector, PrimingBucket, Bucket, PrimingShoelace,
                  Shoelace, PrimingOfficeClip, OfficeClip, PrimingWineCork, WineCork,  PrimingBrick, Brick,
                  PrimingHanger, Hanger, AttentionCheck, Demographics]
+
+
