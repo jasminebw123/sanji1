@@ -85,10 +85,3 @@ class Player(BasePlayer):
     # consent:
     consent = models.StringField(label="Informed consent", choices=["I do not agree to participate in the experiment",
                                                                     "I agree to participate in the experiment"], blank=False)
-
-#     def custom_export(players):
-#        yield ['participant_code', 'condit']
-#        for p in players:
-#            vft = p.vars_for_template()
-#            yield [p.participant.code, vft['self.player.condition']]
-

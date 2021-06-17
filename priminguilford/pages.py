@@ -6,7 +6,6 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-
 class InformedConsent(Page):
     form_model = "player"
     form_fields = ["consent"]
