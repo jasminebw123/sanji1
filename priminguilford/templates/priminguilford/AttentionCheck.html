@@ -1,0 +1,30 @@
+<script type="text/javascript">
+
+function stopRKey(evt) {
+  var evt = (evt) ? evt : ((event) ? event : null);
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+}
+
+document.onkeypress = stopRKey;
+
+</script>
+
+
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pots
+{% endblock %}
+
+{% block content %}
+<p>
+    This is an attention check. If you are reading this, please enter "Sagit" in the field "Use1".
+</p>
+
+{% formfields %}
+
+    {% next_button %}
+
+{% endblock %}
